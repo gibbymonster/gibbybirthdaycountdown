@@ -1,153 +1,266 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>🔥 countdown to gibby day 🔥</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>countdown to gibby day</title>
+  <link rel="icon" type="image/png" href="birthday-cake_1f382.png">
+  <style>
+    :root{
+      --bg:#11001c;
+      --card:#1e0034;
+      --accent:#ff00ff;
+      --muted:#b388ff;
+      --glass: rgba(255,255,255,0.07);
+      font-family: "Comic Sans MS", "Comic Sans", cursive !important;
+      cursor: url('https://cur.cursors-4u.net/cursors/cur-2/cur116.cur'), auto;
+    }
+    *{box-sizing:border-box; font-family: "Comic Sans MS", "Comic Sans", cursive !important;}
+    html,body{height:100%}
+    body{
+      margin:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#fff0fa;
+      padding:24px;
+      background:
+        repeating-conic-gradient(from 0deg at 50% 50%, #ff00ff 0deg 10deg, #00ffff 10deg 20deg),
+        var(--bg);
+      animation: bgmove 20s infinite linear;
+    }
+    @keyframes bgmove {
+      0%{transform: scale(1) translateX(0) translateY(0); filter:hue-rotate(0deg);}
+      25%{transform: scale(1.2) translateX(20px) translateY(-20px); filter:hue-rotate(90deg);}
+      50%{transform: scale(1) translateX(-20px) translateY(20px); filter:hue-rotate(180deg);}
+      75%{transform: scale(1.3) translateX(30px) translateY(-10px); filter:hue-rotate(270deg);}
+      100%{transform: scale(1) translateX(0) translateY(0); filter:hue-rotate(360deg);}
+    }
 
-<!-- Favicon -->
-<link rel="icon" type="image/png" href="birthday-cake_1f382.png">
+    .card{
+      width:min(720px, 96vw);
+      background: linear-gradient(180deg, rgba(40,0,70,0.9), rgba(20,0,40,0.95));
+      border-radius:24px;
+      padding:32px;
+      box-shadow: 0 0 35px magenta, 0 0 60px cyan;
+      border: 2px dashed lime;
+      display:grid;
+      gap:22px;
+      align-items:center;
+      text-align:center;
+      transform: rotate(-1deg);
+    }
 
-<style>
-:root{
-  --bg:#11001c;
-  --card:#1e0034;
-  --accent:#ff00ff;
-  --muted:#b388ff;
-  font-family:"Comic Sans MS", cursive;
-}
-*{box-sizing:border-box;font-family:"Comic Sans MS", cursive;}
-html,body{height:100%;margin:0;display:flex;align-items:center;justify-content:center;color:#fff;}
+    h1{
+      margin:0;
+      font-size:clamp(24px, 5vw, 40px);
+      letter-spacing:-0.02em;
+      text-shadow: 2px 2px 0 #000, 0 0 10px #ff00ff;
+    }
+    p.lead{
+      margin:0;
+      color:#ffebf9;
+      font-size:16px;
+      animation: wiggle 2s infinite ease-in-out;
+    }
+    @keyframes wiggle {
+      0%,100%{transform:rotate(-1deg);}
+      50%{transform:rotate(1deg);}
+    }
 
-/* spinning sun-ray background */
-body{
-  background:
-    repeating-conic-gradient(from 0deg at 50% 50%, #ff00ff 0deg 10deg, #00ffff 10deg 20deg),
-    var(--bg);
-  animation: spinbg 40s linear infinite;
-}
-@keyframes spinbg {
-  0%{filter:hue-rotate(0deg);}
-  100%{filter:hue-rotate(360deg);}
-}
+    .countdown{
+      display:flex;
+      gap:14px;
+      justify-content:center;
+      flex-wrap:wrap;
+      margin-top:6px;
+    }
 
-.card{
-  width:min(720px,96vw);
-  background: linear-gradient(180deg, rgba(40,0,70,0.95), rgba(20,0,40,0.95));
-  border-radius:24px;
-  padding:32px;
-  display:grid;
-  gap:22px;
-  align-items:center;
-  text-align:center;
-  position:relative;
-}
-h1{margin:0;font-size:clamp(24px,5vw,40px);color:#ff00ff;text-shadow:0 0 10px cyan;}
-p.lead{margin:0;color:#fff;font-size:16px;}
+    .unit{
+      background: var(--glass);
+      backdrop-filter: blur(8px);
+      border-radius:14px;
+      padding:16px 20px;
+      min-width:92px;
+      border:2px solid #ff00ff;
+      transform: rotate(2deg);
+      animation: bounce 1.8s infinite;
+    }
+    @keyframes bounce{
+      0%,100%{transform:translateY(0) rotate(2deg);}
+      50%{transform:translateY(-8px) rotate(-2deg);}
+    }
+    .value{
+      font-weight:900;
+      font-size:clamp(22px, 4vw, 36px);
+      line-height:1;
+      color:lime;
+    }
+    .label{
+      font-size:13px;
+      color:yellow;
+      margin-top:4px;
+      text-transform:uppercase;
+      letter-spacing:0.18em;
+    }
 
-.countdown{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:12px;}
-.unit{background:rgba(255,255,255,0.1);backdrop-filter:blur(6px);border-radius:14px;padding:16px 20px;min-width:92px;text-align:center;position:relative;}
-.value{font-weight:900;font-size:clamp(22px,4vw,36px);color:lime;}
-.label{font-size:13px;color:yellow;margin-top:4px;text-transform:uppercase;}
+    .meta{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      align-items:center;
+      margin-top:8px;
+      flex-wrap:wrap;
+      font-size:14px;
+      color:cyan;
+    }
 
-.celebrate{
-  display:none;
-  gap:10px;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-  border-radius:14px;
-  background: repeating-linear-gradient(45deg,#ff00ff,#ff00ff 10px,#00ffff 10px,#00ffff 20px);
-  color:#000;
-  font-weight:900;
-  font-size:18px;
-  box-shadow:0 0 20px yellow;
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  z-index:10;
-}
-.confetti{
-  position:absolute;
-  top:0;left:0;width:100%;height:100%;pointer-events:none;overflow:visible;
-}
-.confetti i{
-  position:absolute;font-style:normal;opacity:0;transform:translateY(-20vh) rotate(0deg);
-  animation: pop 2200ms linear forwards;
-  font-size:22px;will-change:transform,opacity;text-shadow:0 0 8px #fff;
-}
+    .celebrate{
+      display:none;
+      gap:10px;
+      align-items:center;
+      justify-content:center;
+      padding:20px;
+      border-radius:14px;
+      background: repeating-linear-gradient(
+        45deg,
+        #ff00ff,
+        #ff00ff 10px,
+        #00ffff 10px,
+        #00ffff 20px
+      );
+      color:#000;
+      font-weight:900;
+      font-size:18px;
+      box-shadow: 0 0 20px yellow;
+      animation: shake 0.3s infinite;
+    }
+    @keyframes shake{
+      0%{transform:translateX(0);}
+      25%{transform:translateX(-3px);}
+      50%{transform:translateX(3px);}
+      75%{transform:translateX(-3px);}
+      100%{transform:translateX(0);}
+    }
 
-@keyframes pop{
-  0%{opacity:0;transform:translateY(-10vh) rotate(0deg) scale(.6);}
-  10%{opacity:1;}
-  60%{transform:translateY(10vh) rotate(360deg) scale(1);}
-  100%{opacity:1;transform:translateY(120px) rotate(720deg) scale(.9);}
-}
-footer{font-size:12px;color:#fff;margin-top:8px;text-align:center;text-shadow:0 0 6px #ff00ff;}
-</style>
+    .confetti i{
+      position:absolute;
+      font-style:normal;
+      opacity:0;
+      transform: translateY(-20vh) rotate(0deg);
+      animation: pop 2200ms linear forwards;
+      font-size:22px;
+      will-change:transform,opacity;
+      text-shadow: 0 0 8px #fff;
+    }
+
+    footer{font-size:12px;color:#fff;margin-top:8px;text-shadow:0 0 6px #ff00ff}
+  </style>
 </head>
 <body>
-<main class="card">
-  <h1>🔥 countdown to gibby day 🔥</h1>
-  <p class="lead">time's ticking. chaos rising. braincells optional.</p>
+  <main class="card" role="main" aria-labelledby="title">
+    <h1 id="title">🔥 countdown to gibby day 🔥</h1>
+    <p class="lead">time's ticking. chaos rising. braincells optional.</p>
 
-  <div class="countdown">
-    <div class="unit"><div class="value" id="days">0</div><div class="label">days</div></div>
-    <div class="unit"><div class="value" id="hours">00</div><div class="label">hours</div></div>
-    <div class="unit"><div class="value" id="minutes">00</div><div class="label">mins</div></div>
-    <div class="unit"><div class="value" id="seconds">00</div><div class="label">secs</div></div>
-  </div>
+    <div class="countdown" id="countdown">
+      <div class="unit">
+        <div class="value" id="days">0</div>
+        <div class="label">days</div>
+      </div>
+      <div class="unit">
+        <div class="value" id="hours">00</div>
+        <div class="label">hours</div>
+      </div>
+      <div class="unit">
+        <div class="value" id="minutes">00</div>
+        <div class="label">mins</div>
+      </div>
+      <div class="unit">
+        <div class="value" id="seconds">00</div>
+        <div class="label">secs</div>
+      </div>
+    </div>
 
-  <div class="celebrate" id="celebrate">🎂 HAPPY BIRTHDAY GIBBY MONSTER 🪩</div>
-  <div class="confetti" id="confetti"></div>
+    <div class="meta">
+      <div id="targetText">target: october 3 (local time)</div>
+      <div id="tzText"></div>
+    </div>
 
-  <footer>gibbified by chaos inc. save this file. offline chaos guaranteed.</footer>
-</main>
+    <div class="celebrate" id="celebrate">
+      🎂 HAPPY BIRTHDAY GIBBY MONSTER 🪩
+    </div>
 
-<script>
-(function(){
-const daysEl=document.getElementById('days');
-const hoursEl=document.getElementById('hours');
-const minsEl=document.getElementById('minutes');
-const secsEl=document.getElementById('seconds');
-const celebrateEl=document.getElementById('celebrate');
-const confettiEl=document.getElementById('confetti');
+    <div class="confetti" id="confetti"></div>
 
-function pad(n){return String(n).padStart(2,'0');}
-function getTarget(){let now=new Date();let target=new Date(now.getFullYear(),9,3,0,0,0);if(now>target){target=new Date(now.getFullYear()+1,9,3,0,0,0);}return target;}
-function update(){
-  const now=new Date(),target=getTarget();
-  const diff=Math.max(0,target-now);
-  const totalSec=Math.floor(diff/1000);
-  const days=Math.floor(totalSec/(3600*24));
-  const hours=Math.floor((totalSec%(3600*24))/3600);
-  const minutes=Math.floor((totalSec%3600)/60);
-  const seconds=totalSec%60;
-  daysEl.textContent=days;
-  hoursEl.textContent=pad(hours);
-  minsEl.textContent=pad(minutes);
-  secsEl.textContent=pad(seconds);
-  if(diff<=0){celebrate();}
-}
+    <footer>gibbified by chaos inc. save this file. unleash the vibes offline.</footer>
+  </main>
 
-function celebrate(){
-  celebrateEl.style.display='flex';
-  confettiEl.innerHTML='';
-  const emojis=['🎉','🪩','💥','🍕','🦑','🥳','🌈','🤡'];
-  for(let i=0;i<25;i++){
-    const el=document.createElement('i');
-    el.textContent=emojis[Math.floor(Math.random()*emojis.length)];
-    el.style.left=Math.floor(Math.random()*100)+'%';
-    el.style.animationDelay=(Math.random()*1.2)+'s';
-    el.style.fontSize=(16+Math.random()*20)+'px';
-    confettiEl.appendChild(el);
-  }
-}
+  <script>
+    (function(){
+      const daysEl = document.getElementById('days');
+      const hoursEl = document.getElementById('hours');
+      const minsEl = document.getElementById('minutes');
+      const secsEl = document.getElementById('seconds');
+      const celebrateEl = document.getElementById('celebrate');
+      const confettiEl = document.getElementById('confetti');
+      const targetText = document.getElementById('targetText');
+      const tzText = document.getElementById('tzText');
 
-update();
-setInterval(update,1000);
-})();
-</script>
+      function getNextOct3(now){
+        let year = now.getFullYear();
+        let target = new Date(year, 9, 3, 0, 0, 0, 0);
+        if (now > target){ year++; target = new Date(year, 9, 3, 0, 0, 0, 0); }
+        return target;
+      }
+      function pad(n, len=2){ return String(n).padStart(len,'0'); }
+
+      function update(){
+        const now = new Date();
+        const target = getNextOct3(now);
+
+        targetText.textContent = `target: october 3, ${target.getFullYear()} (local gibbytime™)`;
+        tzText.textContent = `timezone: ${Intl.DateTimeFormat().resolvedOptions().timeZone || 'local clown zone'}`;
+
+        const diff = target - now;
+        if (diff <= 0){
+          daysEl.textContent = '0';
+          hoursEl.textContent = '00';
+          minsEl.textContent = '00';
+          secsEl.textContent = '00';
+          celebrate();
+          return;
+        }
+
+        const totalSeconds = Math.floor(diff / 1000);
+        const days = Math.floor(totalSeconds / (3600*24));
+        const hours = Math.floor((totalSeconds % (3600*24)) / 3600);
+        const minutes = Math.floor((totalSeconds % 3600) / 60);
+        const seconds = totalSeconds % 60;
+
+        daysEl.textContent = days;
+        hoursEl.textContent = pad(hours);
+        minsEl.textContent = pad(minutes);
+        secsEl.textContent = pad(seconds);
+      }
+
+      function celebrate(){
+        celebrateEl.style.display = 'flex';
+        confettiEl.innerHTML = '';
+        const emojis = ['🤡','🎉','🪩','💥','🍕','🦑','🥳','🌈'];
+        for (let i=0;i<22;i++){
+          const el = document.createElement('i');
+          el.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+          const x = Math.floor(Math.random()*100);
+          el.style.left = x + '%';
+          el.style.animationDelay = (Math.random()*1.2) + 's';
+          el.style.fontSize = (16 + Math.random()*20) + 'px';
+          confettiEl.appendChild(el);
+        }
+      }
+
+      update();
+      setInterval(update, 250);
+    })();
+  </script>
 </body>
 </html>
