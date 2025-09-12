@@ -4,15 +4,17 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>countdown to gibby day</title>
-  <link rel="icon" type="image/png" href="birthday-cake_1f382.png">
+  <!-- local favicon -->
+  <link rel="icon" type="image/png" href="/Users/gibsonmajor/Downloads/g77scripts/birthday-cake_1f382.png">
   <style>
     :root{
       --bg:#11001c;
       --glass: rgba(255,255,255,0.07);
       font-family: "Comic Sans MS", "Comic Sans", cursive !important;
-      cursor: url('https://www.nicepng.com/png/full/17-171841_cursor-png-mouse-cursor-funny.png'), auto;
+      /* local cursor */
+      cursor: url('/Users/gibsonmajor/Downloads/g77scripts/Pepperoni Pizza Slice & Sliced Pizza 3D--cursor--SweezyCursors..cur'), auto;
     }
-    *{box-sizing:border-box; font-family: "Comic Sans MS", "Comic Sans", cursive !important;}
+    *{box-sizing:border-box;}
     html,body{height:100%; margin:0;}
 
     body {
@@ -233,8 +235,7 @@
         for (let i=0;i<22;i++){
           const el = document.createElement('i');
           el.textContent = emojis[Math.floor(Math.random()*emojis.length)];
-          const x = Math.floor(Math.random()*100);
-          el.style.left = x + '%';
+          el.style.left = Math.floor(Math.random()*100) + '%';
           el.style.animationDelay = (Math.random()*1.2) + 's';
           el.style.fontSize = (16 + Math.random()*20) + 'px';
           confettiEl.appendChild(el);
