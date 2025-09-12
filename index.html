@@ -4,14 +4,10 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>countdown to gibby day</title>
-  <!-- favicon birthday cake -->
   <link rel="icon" type="image/png" href="birthday-cake_1f382.png">
   <style>
     :root{
       --bg:#11001c;
-      --card:#1e0034;
-      --accent:#ff00ff;
-      --muted:#b388ff;
       --glass: rgba(255,255,255,0.07);
       font-family: "Comic Sans MS", "Comic Sans", cursive !important;
       cursor: url('https://cur.cursors-4u.net/cursors/cur-2/cur116.cur'), auto;
@@ -19,31 +15,14 @@
     *{box-sizing:border-box; font-family: "Comic Sans MS", "Comic Sans", cursive !important;}
     html,body{height:100%; margin:0;}
 
-    /* background rays */
-    .rays {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      z-index: 0;
-      background: repeating-conic-gradient(
-        from 0deg at 50% 50%,
-        #ff00ff 0deg 10deg,
-        #00ffff 10deg 20deg
-      );
-      animation: spinny 20s linear infinite;
-    }
-    @keyframes spinny {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-
     body {
       display:flex;
       align-items:center;
       justify-content:center;
       color:#fff0fa;
       padding:24px;
-      background: var(--bg);
+      background: url('https://i.pinimg.com/originals/b1/72/8a/b1728a49ec07b79af0796beefe503bb9.gif') no-repeat center center fixed;
+      background-size: cover;
     }
 
     .card{
@@ -88,6 +67,11 @@
       padding:16px 20px;
       min-width:92px;
       border:2px solid #ff00ff;
+      animation: bounce 1.8s infinite;
+    }
+    @keyframes bounce{
+      0%,100%{transform:translateY(0) rotate(2deg);}
+      50%{transform:translateY(-8px) rotate(-2deg);}
     }
     .value{
       font-weight:900;
@@ -157,7 +141,6 @@
   </style>
 </head>
 <body>
-  <div class="rays"></div>
   <main class="card" role="main" aria-labelledby="title">
     <h1 id="title">🔥 countdown to gibby day 🔥</h1>
     <p class="lead">time's ticking. chaos rising. braincells optional.</p>
