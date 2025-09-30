@@ -191,8 +191,9 @@
 
       function getNextOct3(now){
         let year = now.getFullYear();
-        let target = new Date(year, 9, 3, 0, 0, 0, 0);
-        if (now > target){ year++; target = new Date(year, 9, 3, 0, 0, 0, 0); }
+        // FIXED: set to october 3 at 23:59:59 instead of 00:00:00
+        let target = new Date(year, 9, 3, 23, 59, 59, 999);
+        if (now > target){ year++; target = new Date(year, 9, 3, 23, 59, 59, 999); }
         return target;
       }
       function pad(n, len=2){ return String(n).padStart(len,'0'); }
