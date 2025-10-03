@@ -189,19 +189,23 @@
       const targetText = document.getElementById('targetText');
       const tzText = document.getElementById('tzText');
 
-      function getNextOct3(now){
+      function getTarget(now){
         let year = now.getFullYear();
-        // FIXED: set to october 3 at 23:59:59 instead of 00:00:00
-        let target = new Date(year, 9, 3, 23, 59, 59, 999);
-        if (now > target){ year++; target = new Date(year, 9, 3, 22, 58, 58, 998); }
+        // set to october 2, 23:59:59
+        let target = new Date(year, 9, 2, 23, 59, 59, 999);
+        if (now > target){ 
+          year++; 
+          target = new Date(year, 9, 2, 23, 59, 59, 999); 
+        }
         return target;
       }
       function pad(n, len=2){ return String(n).padStart(len,'0'); }
 
       function update(){
         const now = new Date();
-        const target = getNextOct3(now);
+        const target = getTarget(now);
 
+        // still SAY october 3 even tho countdown is for oct 2 11:59:59
         targetText.textContent = `target: october 3, ${target.getFullYear()} (local gibbytime™)`;
         tzText.textContent = `timezone: ${Intl.DateTimeFormat().resolvedOptions().timeZone || 'local clown zone'}`;
 
