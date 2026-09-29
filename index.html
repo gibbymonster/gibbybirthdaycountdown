@@ -142,8 +142,7 @@
 </head>
 <body>
   <main class="card" role="main" aria-labelledby="title">
-    <h1 id="title">🔥 countdown to gibby day 🔥</h1>
-    <p class="lead">time's ticking. chaos rising. braincells optional.</p>
+    <h1 id="title">countdown to gibby day</h1>
 
     <div class="countdown" id="countdown">
       <div class="unit">
@@ -170,7 +169,7 @@
     </div>
 
     <div class="celebrate" id="celebrate">
-      🎂 HAPPY BIRTHDAY GIBBY MONSTER 🪩
+      HAPPY BIRTHDAY GIBBY MONSTER
     </div>
 
     <div class="confetti" id="confetti"></div>
@@ -191,7 +190,7 @@
 
       function getTarget(now){
         let year = now.getFullYear();
-        // set to october 2, 23:59:59
+        // set to october 3, 01:00:00
         let target = new Date(year, 9, 2, 23, 59, 59, 999);
         if (now > target){ 
           year++; 
